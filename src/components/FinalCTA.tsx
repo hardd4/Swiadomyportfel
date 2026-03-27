@@ -1,4 +1,5 @@
 import { CheckCircle, Zap, Lock } from "lucide-react";
+import BuyButton from "./BuyButton";
 import AnimatedSection from "./AnimatedSection";
 
 const bullets = [
@@ -64,12 +65,9 @@ export default function FinalCTA() {
             </ul>
 
             {/* CTA */}
-            <a
-              href={process.env.NEXT_PUBLIC_PAYMENT_URL ?? "#"}
-              className="flex items-center justify-center gap-2 w-full bg-orange-500 hover:bg-orange-400 text-white font-black text-lg py-4 rounded-xl transition-all duration-200 hover:-translate-y-0.5 shadow-lg shadow-orange-500/25 mb-4"
-            >
-              KUPUJĘ TERAZ
-            </a>
+            <div className="mb-4">
+              <BuyButton url={process.env.NEXT_PUBLIC_PAYMENT_URL ?? "#"} />
+            </div>
 
             {/* Trust */}
             <div className="flex flex-wrap items-center justify-center gap-4 text-neutral-500 text-xs">

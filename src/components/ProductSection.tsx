@@ -1,5 +1,6 @@
 import { BookOpen, Zap, ShieldCheck, RefreshCw } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
+import BuyButton from "./BuyButton";
 
 const bullets = [
   "Konkretny system działania – co robić krok po kroku, bez teorii i lania wody",
@@ -78,12 +79,9 @@ export default function ProductSection() {
                   </div>
 
                   {/* CTA */}
-                  <a
-                    href={process.env.NEXT_PUBLIC_PAYMENT_URL ?? "#"}
-                    className="block w-full bg-orange-500 hover:bg-orange-400 text-white font-black text-lg py-4 rounded-xl text-center transition-all duration-200 hover:-translate-y-0.5 shadow-lg shadow-orange-500/25 mb-4"
-                  >
-                    KUPUJĘ TERAZ
-                  </a>
+                  <div className="mb-4">
+                    <BuyButton url={process.env.NEXT_PUBLIC_PAYMENT_URL ?? "#"} />
+                  </div>
 
                   {/* Instant access */}
                   <div className="flex items-center gap-2 justify-center text-neutral-400 text-sm mb-6">
