@@ -1,4 +1,4 @@
-import { CheckCircle, ShieldCheck, Zap, Lock } from "lucide-react";
+import { CheckCircle, Zap, Lock } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 
 const bullets = [
@@ -73,10 +73,6 @@ export default function FinalCTA() {
 
             {/* Trust */}
             <div className="flex flex-wrap items-center justify-center gap-4 text-neutral-500 text-xs">
-              <span className="flex items-center gap-1.5">
-                <ShieldCheck className="w-3.5 h-3.5 text-orange-400" />
-                Gwarancja 30 dni
-              </span>
               <span className="flex items-center gap-1.5">
                 <Zap className="w-3.5 h-3.5 text-orange-400" />
                 Dostęp od razu

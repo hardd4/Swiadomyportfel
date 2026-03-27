@@ -34,7 +34,7 @@ const faqs = [
   {
     question: "A co jeśli mi nie pomoże?",
     answer:
-      "Mamy 30-dniową gwarancję zwrotu bez pytań. Jeśli po zapoznaniu się z materiałem uznasz, że to nie dla Ciebie – piszesz jednego maila i zwracamy Ci całą kwotę. Zero ryzyka z Twojej strony.",
+      "Ta metoda działa, jeśli ją zastosujesz. Nie ma tu magii, jest konkret. Jeśli przeczytasz i wdrożysz, zobaczysz zmianę. Jeśli włożysz to na półkę, nic się nie zmieni.",
   },
   {
     question: "Czy to jest subskrypcja? Czy będę płacić co miesiąc?",

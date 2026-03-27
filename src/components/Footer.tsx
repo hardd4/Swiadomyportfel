@@ -19,11 +19,11 @@ export default function Footer() {
               kontakt@swiadomyportfel.pl
             </a>
             <span className="hidden sm:inline text-neutral-800">·</span>
-            <a href="#" className="hover:text-neutral-300 transition-colors">
+            <a href="/polityka-prywatnosci" className="hover:text-neutral-300 transition-colors">
               Polityka prywatności
             </a>
             <span className="hidden sm:inline text-neutral-800">·</span>
-            <a href="#" className="hover:text-neutral-300 transition-colors">
+            <a href="/regulamin" className="hover:text-neutral-300 transition-colors">
               Regulamin
             </a>
           </nav>

@@ -77,7 +77,7 @@ export default function BeforeAfter() {
           >
             CHCĘ MIEĆ TĘ ZMIANĘ
           </a>
-          <p className="mt-3 text-neutral-400 text-sm">30-dniowa gwarancja zwrotu · Dostęp natychmiastowy</p>
+          <p className="mt-3 text-neutral-400 text-sm">Dostęp natychmiastowy</p>
         </AnimatedSection>
       </div>
     </section>

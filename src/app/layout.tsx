@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
+import CookieBanner from "@/components/CookieBanner";
 
 const geist = Geist({
   variable: "--font-geist-sans",
@@ -8,17 +9,29 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Świadomy Portfel – Skończ z Impulsywnym Kupowaniem",
+  title: "ŚwiadomyPortfel – Skończ z Impulsywnym Kupowaniem",
   description:
-    "Sprawdzony system, który zmienia Twoje podejście do pieniędzy. Odkryj konkretny mechanizm kontroli wydatków i odzyskaj pełną kontrolę nad swoim budżetem.",
+    "Sprawdzony system kontroli wydatków. Zatrzymaj zakup zanim wydasz pieniądze. Konkretny mechanizm, który możesz wdrożyć od razu.",
   keywords:
-    "impulsywne kupowanie, kontrola wydatków, budżet domowy, oszczędzanie, finanse osobiste, metoda STOP",
+    "impulsywne kupowanie, kontrola wydatków, budżet domowy, oszczędzanie, finanse osobiste",
+  metadataBase: new URL("https://swiadomyportfel.pl"),
   openGraph: {
-    title: "Świadomy Portfel – Skończ z Impulsywnym Kupowaniem",
+    title: "ŚwiadomyPortfel – Skończ z Impulsywnym Kupowaniem",
     description:
-      "Sprawdzony system z konkretnymi technikami, który pomoże Ci odzyskać kontrolę nad finansami i skończyć z impulsywnymi zakupami.",
+      "Sprawdzony system kontroli wydatków. Zatrzymaj zakup zanim wydasz pieniądze.",
     type: "website",
     locale: "pl_PL",
+    url: "https://swiadomyportfel.pl",
+    siteName: "ŚwiadomyPortfel",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ŚwiadomyPortfel – Skończ z Impulsywnym Kupowaniem",
+    description: "Sprawdzony system kontroli wydatków. Zatrzymaj zakup zanim wydasz pieniądze.",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -31,6 +44,7 @@ export default function RootLayout({
     <html lang="pl" className={`${geist.variable} h-full`}>
       <body className="min-h-full flex flex-col bg-white text-slate-900 font-[family-name:var(--font-geist-sans)]">
         {children}
+        <CookieBanner />
       </body>
     </html>
   );

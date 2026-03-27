@@ -107,16 +107,6 @@ export default function ProductSection() {
                   </div>
                 </div>
 
-                {/* Guarantee */}
-                <div className="mt-6 flex items-start gap-3 bg-neutral-900 rounded-xl p-4">
-                  <ShieldCheck className="w-5 h-5 text-orange-400 flex-shrink-0 mt-0.5" />
-                  <div>
-                    <p className="text-white text-sm font-bold">30-dniowa gwarancja zwrotu</p>
-                    <p className="text-neutral-400 text-xs leading-relaxed mt-0.5">
-                      Jeśli nie jesteś zadowolony, zwracamy pełną kwotę bez pytań.
-                    </p>
-                  </div>
-                </div>
 
               </div>
             </div>

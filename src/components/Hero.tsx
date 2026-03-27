@@ -65,9 +65,6 @@ export default function Hero() {
           className="flex flex-wrap items-center justify-center gap-6 text-sm text-neutral-500"
         >
           <span className="flex items-center gap-1.5">
-            <span className="text-orange-400">✓</span> Gwarancja zwrotu 30 dni
-          </span>
-          <span className="flex items-center gap-1.5">
             <span className="text-orange-400">⚡</span> Dostęp natychmiastowy
           </span>
           <span className="flex items-center gap-1.5">
