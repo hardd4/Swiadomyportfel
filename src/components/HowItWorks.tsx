@@ -24,7 +24,7 @@ const chapters = [
   {
     number: "05",
     headline: "Schemat decyzji",
-    text: "4 kroki, które wystarczą, żeby przestać kupować bez sensu. Nauczysz się ich raz i korzystasz z nich przez całe życie.",
+    text: "Sprawdzona metoda aby przestać kupować bez sensu. Nauczysz się jej raz, a potem korzystasz przez całe życie.",
   },
   {
     number: "06",
@@ -38,8 +38,8 @@ const chapters = [
   },
   {
     number: "08",
-    headline: "Pułapki, wpadki i trudne rozmowy",
-    text: "Co zrobić gdy coś nie idzie zgodnie z planem. Jak wyjść z każdej sytuacji bez poczucia porażki.",
+    headline: "Pułapki",
+    text: "Sposoby na uniknięcie wszystkich przeszkód jakie mogą Cię spotkać.",
   },
 ];
 
@@ -74,9 +74,7 @@ export default function HowItWorks() {
                     <h3 className="text-neutral-900 font-black text-lg leading-snug mb-1.5">
                       {headline}
                     </h3>
-                    <p className="text-neutral-500 text-sm leading-relaxed max-w-lg">
-                      {text}
-                    </p>
+                    <p className="text-neutral-500 text-sm leading-relaxed max-w-lg">{text}</p>
                   </div>
                 </div>
               </AnimatedSection>

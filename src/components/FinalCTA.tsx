@@ -3,11 +3,11 @@ import BuyButton from "./BuyButton";
 import AnimatedSection from "./AnimatedSection";
 
 const bullets = [
-  "Dowiesz się, co tak naprawdę sprawia że kupujesz bez zastanowienia – i jak to zmienić",
-  "7 rozdziałów z ćwiczeniami i checklistami do każdego kroku",
-  "Konkretny plan działania – co robić od pierwszego dnia, krok po kroku",
-  "Arkusz, który pokaże Ci gdzie naprawdę idą Twoje pieniądze",
-  "Dożywotni dostęp i darmowe aktualizacje",
+  "Pierwszy raz od dawna zostaną Ci pieniądze na koniec miesiąca",
+  "Zyskasz kontrolę nad pieniędzmi, bez wyrzeczeń",
+  "Przestaniesz kupować rzeczy, których nie potrzebujesz",
+  "Zrozumiesz dlaczego poprzednie metody nie działały i co zrobić inaczej",
+  "Skończy się poczucie winy po zakupie i sprawdzanie konta z niepokojem",
 ];
 
 export default function FinalCTA() {
@@ -47,10 +47,10 @@ export default function FinalCTA() {
 
             {/* Price */}
             <div className="flex items-center gap-3 mb-5">
-              <span className="text-neutral-500 text-base line-through">129,99 zł</span>
+              <span className="text-neutral-500 text-base line-through">79,99 zł</span>
               <span className="text-white text-4xl font-black">64,99 zł</span>
               <span className="bg-orange-500 text-white text-xs font-black px-2.5 py-1 rounded-full">
-                -50%
+                -20%
               </span>
             </div>
 

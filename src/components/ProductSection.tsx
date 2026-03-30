@@ -3,9 +3,9 @@ import AnimatedSection from "./AnimatedSection";
 import BuyButton from "./BuyButton";
 
 const bullets = [
-  "Konkretny system działania – co robić krok po kroku, bez teorii i lania wody",
-  "Jedna technika, która zatrzymuje zakup zanim go zrobisz",
-  "Twoje oszczędności zaczną rosnąć – bez wyrzeczeń i liczenia każdego grosza",
+  "Pierwszy raz od dawna zostaną Ci pieniądze na koniec miesiąca",
+  "Zyskasz kontrolę nad pieniędzmi, bez wyrzeczeń",
+  "Przestaniesz kupować rzeczy, których nie potrzebujesz",
 ];
 
 const paymentMethods = ["BLIK", "Visa", "Mastercard", "Przelewy24", "PayPal"];
@@ -35,8 +35,8 @@ export default function ProductSection() {
                     <BookOpen className="w-6 h-6 text-orange-400" />
                   </div>
                   <div>
-                    <p className="text-orange-400 text-xs font-bold uppercase tracking-widest">Metoda STOP</p>
-                    <p className="text-white font-bold text-sm">ŚwiadomyPortfel</p>
+                    <p className="text-orange-400 text-xs font-bold uppercase tracking-widest">ŚwiadomyPortfel</p>
+                    <p className="text-white font-bold text-sm">swiadomyportfel.pl</p>
                   </div>
                 </div>
 
@@ -65,12 +65,12 @@ export default function ProductSection() {
                 <div>
                   {/* Price */}
                   <div className="mb-6">
-                    <span className="text-neutral-500 text-sm line-through">129,99 zł</span>
+                    <span className="text-neutral-500 text-sm line-through">79,99 zł</span>
                     <div className="flex items-end gap-3">
                       <span className="text-white text-5xl font-black">64,99</span>
                       <span className="text-white text-2xl font-bold mb-1">zł</span>
                       <span className="bg-orange-500 text-white text-xs font-black px-2.5 py-1 rounded-full mb-2">
-                        -50%
+                        -20%
                       </span>
                     </div>
                     <p className="text-neutral-400 text-sm mt-1">
