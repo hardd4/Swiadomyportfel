@@ -66,7 +66,7 @@ export default function FinalCTA() {
 
             {/* CTA */}
             <div className="mb-4">
-              <BuyButton url={process.env.NEXT_PUBLIC_PAYMENT_URL ?? "#"} />
+              <BuyButton />
             </div>
 
             {/* Trust */}

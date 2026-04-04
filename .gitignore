@@ -36,6 +36,11 @@ yarn-error.log*
 # vercel
 .vercel
 
+# PDF ebook — nie wrzucaj na GitHub, uploaduj bezpośrednio na Vercel
+/private/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.vercel
