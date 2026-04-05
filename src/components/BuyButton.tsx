@@ -16,16 +16,33 @@ export default function BuyButton({ label = "KUPUJĘ TERAZ" }: BuyButtonProps) {
 
   const isEmailValid = email.includes("@") && email.length >= 5;
 
-  const PAYMENT_LINK = "https://buy.stripe.com/fZuaEP68B5J92tfcQwgfu00";
-
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     setEmailTouched(true);
     setConsentTouched(true);
     if (!isEmailValid || !agreed) return;
 
     setLoading(true);
-    const url = `${PAYMENT_LINK}?prefilled_email=${encodeURIComponent(email)}`;
-    window.location.href = url;
+    setError("");
+
+    try {
+      const res = await fetch("/api/pay", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await res.json();
+
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        setError(data.error || "Coś poszło nie tak. Spróbuj ponownie.");
+        setLoading(false);
+      }
+    } catch {
+      setError("Błąd połączenia. Sprawdź internet i spróbuj ponownie.");
+      setLoading(false);
+    }
   };
 
   return (
