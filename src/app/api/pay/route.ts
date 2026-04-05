@@ -51,6 +51,7 @@ export async function POST(req: NextRequest) {
       headers: {
         Authorization: `Bearer ${STRIPE_SECRET_KEY}`,
         "Content-Type": "application/x-www-form-urlencoded",
+        "Stripe-Version": "2024-06-20",
       },
       body: params.toString(),
     });
