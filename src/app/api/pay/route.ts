@@ -17,7 +17,6 @@ export async function POST(req: NextRequest) {
     params.append("mode", "payment");
     params.append("payment_method_types[]", "card");
     params.append("payment_method_types[]", "blik");
-    params.append("payment_method_types[]", "p24");
     params.append("payment_method_types[]", "link");
     params.append("customer_email", email);
     params.append("success_url", `${SITE_URL}/dziekujemy?session_id={CHECKOUT_SESSION_ID}`);
