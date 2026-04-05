@@ -5,6 +5,16 @@ export const runtime = "nodejs";
 const SITE_URL = (process.env.SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000").trim();
 const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY!;
 
+const CORS_HEADERS = {
+  "Access-Control-Allow-Origin": SITE_URL,
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type",
+};
+
+export async function OPTIONS() {
+  return new NextResponse(null, { status: 204, headers: CORS_HEADERS });
+}
+
 export async function POST(req: NextRequest) {
   try {
     const { email } = await req.json();
@@ -65,9 +75,9 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: data.error?.message || "Błąd Stripe" }, { status: 500 });
     }
 
-    return NextResponse.json({ url: data.url });
+    return NextResponse.json({ url: data.url }, { headers: CORS_HEADERS });
   } catch (err) {
     console.error("Payment error:", err);
-    return NextResponse.json({ error: "Błąd podczas tworzenia sesji płatności" }, { status: 500 });
+    return NextResponse.json({ error: "Błąd podczas tworzenia sesji płatności" }, { status: 500, headers: CORS_HEADERS });
   }
 }

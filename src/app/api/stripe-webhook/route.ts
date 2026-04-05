@@ -166,14 +166,12 @@ export async function POST(req: NextRequest) {
     if (email && session.payment_status === "paid") {
       try {
         await sendEmail(email);
-        console.log("Email sent:", email);
       } catch (err) {
         console.error("Email failed:", err);
       }
 
       try {
         await createInvoice(session);
-        console.log("Invoice created:", email);
       } catch (err) {
         console.error("Invoice failed:", err);
       }
