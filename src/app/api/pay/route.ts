@@ -1,22 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import crypto from "crypto";
 
 export const runtime = "nodejs";
 
 const SITE_URL = (process.env.SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000").trim();
-const TOKEN_SECRET = process.env.TOKEN_SECRET!;
 const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY!;
-
-function generateToken(email: string): string {
-  const ts = Math.floor(Date.now() / 1000);
-  const data = `${email}:${ts}`;
-  const sig = crypto
-    .createHmac("sha256", TOKEN_SECRET)
-    .update(data)
-    .digest("hex")
-    .slice(0, 16);
-  return Buffer.from(`${data}:${sig}`).toString("base64url");
-}
 
 export async function POST(req: NextRequest) {
   try {
@@ -26,12 +13,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Podaj prawidłowy adres email" }, { status: 400 });
     }
 
-    const token = generateToken(email);
-
     const params = new URLSearchParams();
     params.append("mode", "payment");
     params.append("customer_email", email);
-    params.append("success_url", `${SITE_URL}/dziekujemy?token=${token}`);
+    params.append("success_url", `${SITE_URL}/dziekujemy?session_id={CHECKOUT_SESSION_ID}`);
     params.append("cancel_url", `${SITE_URL}/#produkt`);
     params.append("metadata[email]", email);
     params.append("allow_promotion_codes", "true");
@@ -53,11 +38,11 @@ export async function POST(req: NextRequest) {
     params.append("custom_fields[1][optional]", "true");
 
     if (process.env.STRIPE_PRICE_ID) {
+      params.set("line_items[0][price]", process.env.STRIPE_PRICE_ID);
       params.delete("line_items[0][price_data][currency]");
       params.delete("line_items[0][price_data][product_data][name]");
       params.delete("line_items[0][price_data][product_data][description]");
       params.delete("line_items[0][price_data][unit_amount]");
-      params.set("line_items[0][price]", process.env.STRIPE_PRICE_ID);
     }
 
     const response = await fetch("https://api.stripe.com/v1/checkout/sessions", {
@@ -77,7 +62,7 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json({ url: data.url });
-  } catch (err: unknown) {
+  } catch (err) {
     console.error("Payment error:", err);
     return NextResponse.json({ error: "Błąd podczas tworzenia sesji płatności" }, { status: 500 });
   }

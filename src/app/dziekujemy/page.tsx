@@ -5,27 +5,31 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Wallet, Download, Mail, CheckCircle, XCircle } from "lucide-react";
 
-type State = "loading" | "valid" | "expired" | "invalid";
+type State = "loading" | "valid" | "invalid";
 
 function DziekujemyContent() {
   const params = useSearchParams();
-  const token = params.get("token");
+  const sessionId = params.get("session_id");
   const [state, setState] = useState<State>("loading");
+  const [token, setToken] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!token) {
+    if (!sessionId) {
       setState("invalid");
       return;
     }
-    fetch(`/api/verify-token?token=${encodeURIComponent(token)}`)
+    fetch(`/api/verify-session?session_id=${encodeURIComponent(sessionId)}`)
       .then((r) => r.json())
       .then((data) => {
-        if (data.valid) setState("valid");
-        else if (data.error === "Token wygasł") setState("expired");
-        else setState("invalid");
+        if (data.valid && data.token) {
+          setToken(data.token);
+          setState("valid");
+        } else {
+          setState("invalid");
+        }
       })
       .catch(() => setState("invalid"));
-  }, [token]);
+  }, [sessionId]);
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
@@ -53,7 +57,7 @@ function DziekujemyContent() {
           )}
 
           {/* Valid */}
-          {state === "valid" && (
+          {state === "valid" && token && (
             <div>
               <div className="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <CheckCircle className="w-10 h-10 text-orange-500" />
@@ -66,7 +70,7 @@ function DziekujemyContent() {
                 <h2 className="font-black text-neutral-900 text-lg mb-1">ŚwiadomyPortfel</h2>
                 <p className="text-neutral-500 text-sm mb-5">PDF gotowy do pobrania. Wysyłamy go też na Twojego maila.</p>
                 <a
-                  href={`/api/download?token=${encodeURIComponent(token!)}`}
+                  href={`/api/download?token=${encodeURIComponent(token)}`}
                   className="flex items-center justify-center gap-2 w-full bg-orange-500 hover:bg-orange-600 text-white font-black py-3.5 rounded-xl transition-all duration-200"
                 >
                   <Download className="w-5 h-5" />
@@ -101,23 +105,6 @@ function DziekujemyContent() {
                   ))}
                 </ul>
               </div>
-            </div>
-          )}
-
-          {/* Expired */}
-          {state === "expired" && (
-            <div>
-              <div className="w-20 h-20 bg-neutral-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <XCircle className="w-10 h-10 text-neutral-400" />
-              </div>
-              <h1 className="text-3xl font-black text-neutral-900 mb-2">Link wygasł</h1>
-              <p className="text-neutral-500 mb-8">Twój link do pobrania wygasł po 7 dniach. Napisz do nas, wyślemy nowy.</p>
-              <a
-                href="mailto:kontakt@swiadomyportfel.pl?subject=Wygasły link do pobrania"
-                className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-black px-7 py-3.5 rounded-xl transition-all duration-200"
-              >
-                NAPISZ DO NAS
-              </a>
             </div>
           )}
 

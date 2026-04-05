@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
     root: path.resolve(__dirname),
   },
   productionBrowserSourceMaps: false,
+  outputFileTracingIncludes: {
+    "/api/download": ["./private/**"],
+  },
 };
 
 export default nextConfig;
