@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { fbqEvent } from "@/lib/pixel";
 
 interface BuyButtonProps {
   label?: string;
@@ -23,6 +24,7 @@ export default function BuyButton({ label = "KUPUJĘ TERAZ" }: BuyButtonProps) {
 
     setLoading(true);
     setError("");
+    fbqEvent("InitiateCheckout", { currency: "PLN", value: 64.99 });
 
     try {
       const res = await fetch("/api/pay", {

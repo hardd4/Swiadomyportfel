@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import PixelEvent from "@/components/PixelPageView";
 import Problems from "@/components/Problems";
 import ProductSection from "@/components/ProductSection";
 import LossCalculator from "@/components/LossCalculator";
@@ -13,6 +14,7 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <>
+      <PixelEvent event="ViewContent" params={{ content_name: "ŚwiadomyPortfel", content_type: "product", currency: "PLN", value: 64.99 }} />
       <Navbar />
       <main>
         <Hero />

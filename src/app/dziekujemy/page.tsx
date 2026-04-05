@@ -4,6 +4,7 @@ import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Wallet, Download, Mail, CheckCircle, XCircle } from "lucide-react";
+import { fbqEvent } from "@/lib/pixel";
 
 type State = "loading" | "valid" | "invalid";
 
@@ -24,6 +25,7 @@ function DziekujemyContent() {
         if (data.valid && data.token) {
           setToken(data.token);
           setState("valid");
+          fbqEvent("Purchase", { currency: "PLN", value: 64.99 });
         } else {
           setState("invalid");
         }
