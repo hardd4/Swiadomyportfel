@@ -8,7 +8,7 @@ const bullets = [
   "Przestaniesz kupować rzeczy, których nie potrzebujesz",
 ];
 
-const paymentMethods = ["BLIK", "Visa", "Mastercard", "Przelewy24", "PayPal"];
+const paymentMethods = ["BLIK", "Visa", "Mastercard"];
 
 export default function ProductSection() {
   return (

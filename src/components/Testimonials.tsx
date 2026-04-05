@@ -25,7 +25,7 @@ const testimonials = [
   },
   {
     name: "Piotr M.",
-    info: "Menedżer, 41 lat",
+    info: "Student, 22 lata",
     avatar: "PM",
     text: "Kupiłem z ciekawości. Okazało się, że przez lata wpadałem w każdą pułapkę opisaną w ebooku. Sama świadomość tego mechanizmu zmieniła moje zachowanie. Polecam każdemu.",
     result: "Ograniczył zbędne wydatki o 40%",

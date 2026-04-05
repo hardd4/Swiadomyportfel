@@ -19,7 +19,7 @@ const faqs = [
   {
     question: "Jakie metody płatności są dostępne?",
     answer:
-      "Możesz zapłacić przez BLIK, kartą Visa lub Mastercard, Przelewy24 lub PayPal. Wszystkie płatności są bezpieczne i szyfrowane SSL.",
+      "Możesz zapłacić przez BLIK lub kartą Visa/Mastercard. Wszystkie płatności są bezpieczne i szyfrowane SSL.",
   },
   {
     question: "W ile zobaczę efekty?",
