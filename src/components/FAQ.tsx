@@ -19,7 +19,7 @@ const faqs = [
   {
     question: "Jakie metody płatności są dostępne?",
     answer:
-      "Możesz zapłacić przez BLIK, kartą Visa/Mastercard, Klarna, Apple Pay, Google Pay lub Przelewy24. Wszystkie płatności są bezpieczne i szyfrowane SSL.",
+      "Możesz zapłacić przez BLIK, kartą Visa/Mastercard, Klarna, Apple Pay lub Google Pay. Wszystkie płatności są bezpieczne i szyfrowane SSL.",
   },
   {
     question: "W ile zobaczę efekty?",
