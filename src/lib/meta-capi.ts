@@ -9,8 +9,9 @@ export function hashEmail(email: string): string {
 }
 
 interface UserData {
-  em?: string;        // hashed email
-  client_user_agent?: string; // NOT hashed
+  em?: string[];
+  ph?: (string | null)[];
+  client_user_agent?: string;
   client_ip_address?: string;
 }
 
@@ -23,9 +24,16 @@ interface CAPIEvent {
   user_data: UserData;
   custom_data?: {
     currency?: string;
-    value?: number;
+    value?: string;
     content_name?: string;
     content_type?: string;
+  };
+  attribution_data?: {
+    attribution_share: string;
+  };
+  original_event_data?: {
+    event_name: string;
+    event_time: number;
   };
 }
 
@@ -48,23 +56,27 @@ export async function sendInitiateCheckoutEvent(opts: {
   ip?: string;
   eventId?: string;
 }) {
+  const event_time = Math.floor(Date.now() / 1000);
   return sendCAPIEvents([{
     event_name: "InitiateCheckout",
-    event_time: Math.floor(Date.now() / 1000),
+    event_time,
     event_id: opts.eventId,
     event_source_url: `${SITE_URL}/#produkt`,
     action_source: "website",
     user_data: {
-      em: hashEmail(opts.email),
+      em: [hashEmail(opts.email)],
+      ph: [null],
       client_user_agent: opts.userAgent,
       client_ip_address: opts.ip,
     },
     custom_data: {
       currency: "PLN",
-      value: 64.99,
+      value: "64.99",
       content_name: "ŚwiadomyPortfel",
       content_type: "product",
     },
+    attribution_data: { attribution_share: "0.3" },
+    original_event_data: { event_name: "InitiateCheckout", event_time },
   }]);
 }
 
@@ -75,22 +87,26 @@ export async function sendPurchaseEvent(opts: {
   userAgent?: string;
   ip?: string;
 }) {
+  const event_time = Math.floor(Date.now() / 1000);
   return sendCAPIEvents([{
     event_name: "Purchase",
-    event_time: Math.floor(Date.now() / 1000),
+    event_time,
     event_id: opts.eventId,
     event_source_url: `${SITE_URL}/dziekujemy`,
     action_source: "website",
     user_data: {
-      em: hashEmail(opts.email),
+      em: [hashEmail(opts.email)],
+      ph: [null],
       client_user_agent: opts.userAgent,
       client_ip_address: opts.ip,
     },
     custom_data: {
       currency: "PLN",
-      value: opts.amount / 100,
+      value: (opts.amount / 100).toFixed(2),
       content_name: "ŚwiadomyPortfel",
       content_type: "product",
     },
+    attribution_data: { attribution_share: "0.3" },
+    original_event_data: { event_name: "Purchase", event_time },
   }]);
 }
