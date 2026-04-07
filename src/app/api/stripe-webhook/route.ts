@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { Resend } from "resend";
 import crypto from "crypto";
+import { sendPurchaseEvent } from "@/lib/meta-capi";
 
 export const runtime = "nodejs";
 
@@ -174,6 +175,12 @@ export async function POST(req: NextRequest) {
         await createInvoice(session);
       } catch (err) {
         console.error("Invoice failed:", err);
+      }
+
+      try {
+        await sendPurchaseEvent(email, session.amount_total || 6499, session.id);
+      } catch (err) {
+        console.error("Meta CAPI failed:", err);
       }
     }
   }
