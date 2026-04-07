@@ -4,6 +4,7 @@ import { Resend } from "resend";
 import crypto from "crypto";
 import { sendPurchaseEvent } from "@/lib/meta-capi";
 
+
 export const runtime = "nodejs";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
@@ -178,7 +179,15 @@ export async function POST(req: NextRequest) {
       }
 
       try {
-        await sendPurchaseEvent(email, session.amount_total || 6499, session.id);
+        const ip = req.headers.get("x-forwarded-for")?.split(",")[0] || undefined;
+        const userAgent = req.headers.get("user-agent") || undefined;
+        await sendPurchaseEvent({
+          email,
+          amount: session.amount_total || 6499,
+          eventId: session.id,
+          userAgent,
+          ip,
+        });
       } catch (err) {
         console.error("Meta CAPI failed:", err);
       }

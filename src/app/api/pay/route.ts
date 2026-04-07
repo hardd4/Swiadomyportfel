@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { sendInitiateCheckoutEvent } from "@/lib/meta-capi";
 
 export const runtime = "nodejs";
 
@@ -75,6 +76,11 @@ export async function POST(req: NextRequest) {
       console.error("Stripe error:", JSON.stringify(data));
       return NextResponse.json({ error: data.error?.message || "Błąd Stripe" }, { status: 500 });
     }
+
+    // Wyślij InitiateCheckout do Meta CAPI
+    const ip = req.headers.get("x-forwarded-for")?.split(",")[0] || undefined;
+    const userAgent = req.headers.get("user-agent") || undefined;
+    sendInitiateCheckoutEvent({ email, userAgent, ip, eventId: (data as { id?: string }).id }).catch(() => {});
 
     return NextResponse.json({ url: data.url }, { headers: CORS_HEADERS });
   } catch (err) {
