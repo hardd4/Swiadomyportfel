@@ -80,7 +80,11 @@ export async function POST(req: NextRequest) {
     // Wyślij InitiateCheckout do Meta CAPI
     const ip = req.headers.get("x-forwarded-for")?.split(",")[0] || undefined;
     const userAgent = req.headers.get("user-agent") || undefined;
-    sendInitiateCheckoutEvent({ email, userAgent, ip, eventId: (data as { id?: string }).id }).catch(() => {});
+    try {
+      await sendInitiateCheckoutEvent({ email, userAgent, ip, eventId: (data as { id?: string }).id });
+    } catch (err) {
+      console.error("Meta CAPI InitiateCheckout failed:", err);
+    }
 
     return NextResponse.json({ url: data.url }, { headers: CORS_HEADERS });
   } catch (err) {

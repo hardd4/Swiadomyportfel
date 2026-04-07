@@ -38,10 +38,14 @@ interface CAPIEvent {
 }
 
 async function sendCAPIEvents(events: CAPIEvent[]) {
+  const body: Record<string, unknown> = { data: events, access_token: CAPI_TOKEN };
+  if (process.env.META_TEST_EVENT_CODE) {
+    body.test_event_code = process.env.META_TEST_EVENT_CODE;
+  }
   const res = await fetch(`https://graph.facebook.com/v19.0/${PIXEL_ID}/events`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ data: events, access_token: CAPI_TOKEN }),
+    body: JSON.stringify(body),
   });
 
   if (!res.ok) {
