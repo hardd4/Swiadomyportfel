@@ -25,7 +25,7 @@ function DziekujemyContent() {
         if (data.valid && data.token) {
           setToken(data.token);
           setState("valid");
-          fbqEvent("Purchase", { currency: "PLN", value: 64.99 });
+          fbqEvent("Purchase", { currency: "PLN", value: 64.99 }, sessionId);
         } else {
           setState("invalid");
         }
