@@ -6,8 +6,12 @@ declare global {
   }
 }
 
-export function fbqEvent(event: string, params?: Record<string, unknown>) {
+export function fbqEvent(event: string, params?: Record<string, unknown>, eventId?: string) {
   if (typeof window !== "undefined" && typeof window.fbq === "function") {
-    window.fbq("track", event, params);
+    if (eventId) {
+      window.fbq("track", event, params, { eventID: eventId });
+    } else {
+      window.fbq("track", event, params);
+    }
   }
 }

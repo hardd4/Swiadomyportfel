@@ -24,13 +24,14 @@ export default function BuyButton({ label = "KUPUJĘ TERAZ" }: BuyButtonProps) {
 
     setLoading(true);
     setError("");
-    fbqEvent("InitiateCheckout", { currency: "PLN", value: 64.99 });
+    const eventId = crypto.randomUUID();
+    fbqEvent("InitiateCheckout", { currency: "PLN", value: 64.99 }, eventId);
 
     try {
       const res = await fetch("/api/pay", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, eventId }),
       });
 
       const data = await res.json();

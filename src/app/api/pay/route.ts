@@ -18,7 +18,7 @@ export async function OPTIONS() {
 
 export async function POST(req: NextRequest) {
   try {
-    const { email } = await req.json();
+    const { email, eventId } = await req.json();
 
     if (!email || !email.includes("@") || email.length < 5) {
       return NextResponse.json({ error: "Podaj prawidłowy adres email" }, { status: 400 });
@@ -81,7 +81,7 @@ export async function POST(req: NextRequest) {
     const ip = req.headers.get("x-forwarded-for")?.split(",")[0] || undefined;
     const userAgent = req.headers.get("user-agent") || undefined;
     try {
-      await sendInitiateCheckoutEvent({ email, userAgent, ip, eventId: (data as { id?: string }).id });
+      await sendInitiateCheckoutEvent({ email, userAgent, ip, eventId: eventId || (data as { id?: string }).id });
     } catch (err) {
       console.error("Meta CAPI InitiateCheckout failed:", err);
     }
