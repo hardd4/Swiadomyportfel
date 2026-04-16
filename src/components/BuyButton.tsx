@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { fbqEvent } from "@/lib/pixel";
+import { gtagBeginCheckout } from "@/lib/gtag";
 
 interface BuyButtonProps {
   label?: string;
@@ -26,6 +27,7 @@ export default function BuyButton({ label = "KUPUJĘ TERAZ" }: BuyButtonProps) {
     setError("");
     const eventId = crypto.randomUUID();
     fbqEvent("InitiateCheckout", { currency: "PLN", value: 64.99 }, eventId);
+    gtagBeginCheckout();
 
     try {
       const res = await fetch("/api/pay", {

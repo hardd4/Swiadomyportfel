@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Wallet, Download, Mail, CheckCircle, XCircle } from "lucide-react";
 import { fbqEvent } from "@/lib/pixel";
+import { gtagPurchase } from "@/lib/gtag";
 
 type State = "loading" | "valid" | "invalid";
 
@@ -26,6 +27,7 @@ function DziekujemyContent() {
           setToken(data.token);
           setState("valid");
           fbqEvent("Purchase", { currency: "PLN", value: 64.99 }, sessionId);
+          gtagPurchase(sessionId, 64.99);
         } else {
           setState("invalid");
         }
